@@ -9,82 +9,84 @@ require './category.rb'
 require './tweet_data'
 require './tweet_diffaizer'
 
+enable :run
+
 upstream_states = {
   :state1 => [
-    TweetData.new('tweet1', '2012-03-01T14:30:10.000+00:00'),
-    TweetData.new('tweet2', '2012-03-01T14:30:10.000+00:00'),
-    TweetData.new('tweet3', '2012-03-01T14:30:10.000+00:00')
+    TweetData.new('tweet01', '2012-03-01T14:30:10.000+00:00'),
+    TweetData.new('tweet02', '2012-03-01T14:30:10.000+00:00'),
+    TweetData.new('tweet03', '2012-03-01T14:30:10.000+00:00')
   ],
   :state2 => [
-    TweetData.new('tweet1', '2012-03-01T14:30:10.000+00:00'),
-    TweetData.new('tweet2', '2012-03-11T14:30:10.000+00:00'),
-    TweetData.new('tweet3', '2012-03-13T14:30:10.000+00:00')
+    TweetData.new('tweet01', '2012-03-01T14:30:10.000+00:00'),
+    TweetData.new('tweet02', '2012-03-11T14:30:10.000+00:00'),
+    TweetData.new('tweet03', '2012-03-13T14:30:10.000+00:00')
   ],
   :state3 => [
-    TweetData.new('tweet1', '2012-03-01T14:30:10.000+00:00'),
-    TweetData.new('tweet2', '2012-03-11T14:30:10.000+00:00'),
-    TweetData.new('tweet3', '2012-03-13T14:30:10.000+00:00')
+    TweetData.new('tweet01', '2012-03-01T14:30:10.000+00:00'),
+    TweetData.new('tweet02', '2012-03-11T14:30:10.000+00:00'),
+    TweetData.new('tweet03', '2012-03-13T14:30:10.000+00:00')
   ],
   :state4 => [
-    TweetData.new('tweet2', '2012-01-01T22:30:10.000+00:00'),
-    TweetData.new('tweet3', '2012-01-01T22:30:10.000+00:00'),
-    TweetData.new('tweet4', '2012-01-01T22:30:10.000+00:00'),
-    TweetData.new('tweet5', '2012-02-01T22:30:10.000+00:00'),
-    TweetData.new('tweet6', '2012-02-01T22:30:10.000+00:00'),
-    TweetData.new('tweet7', '2012-03-01T22:30:10.000+00:00'),
-    TweetData.new('tweet8', '2012-03-01T22:30:10.000+00:00'),
-    TweetData.new('tweet9', '2012-03-01T22:30:10.000+00:00'),
+    TweetData.new('tweet02', '2012-01-01T22:30:10.000+00:00'),
+    TweetData.new('tweet03', '2012-01-01T22:30:10.000+00:00'),
+    TweetData.new('tweet04', '2012-01-01T22:30:10.000+00:00'),
+    TweetData.new('tweet05', '2012-02-01T22:30:10.000+00:00'),
+    TweetData.new('tweet06', '2012-02-01T22:30:10.000+00:00'),
+    TweetData.new('tweet07', '2012-03-01T22:30:10.000+00:00'),
+    TweetData.new('tweet08', '2012-03-01T22:30:10.000+00:00'),
+    TweetData.new('tweet09', '2012-03-01T22:30:10.000+00:00'),
     TweetData.new('tweet10', '2012-03-15T13:59:10.000+00:00')
   ],
   :state5 => [
-    TweetData.new('tweet2', '2012-01-01T22:30:10.000+00:00'),
-    TweetData.new('tweet3', '2012-01-01T22:30:10.000+00:00'),
-    TweetData.new('tweet4', '2012-01-01T22:30:10.000+00:00'),
-    TweetData.new('tweet5', '2012-02-01T22:30:10.000+00:00'),
-    TweetData.new('tweet6', '2012-02-01T22:30:10.000+00:00'),
-    TweetData.new('tweet7', '2012-03-01T22:30:10.000+00:00'),
-    TweetData.new('tweet8', '2012-03-01T22:30:10.000+00:00'),
-    TweetData.new('tweet9', '2012-03-01T22:30:10.000+00:00'),
+    TweetData.new('tweet02', '2012-01-01T22:30:10.000+00:00'),
+    TweetData.new('tweet03', '2012-01-01T22:30:10.000+00:00'),
+    TweetData.new('tweet04', '2012-01-01T22:30:10.000+00:00'),
+    TweetData.new('tweet05', '2012-02-01T22:30:10.000+00:00'),
+    TweetData.new('tweet06', '2012-02-01T22:30:10.000+00:00'),
+    TweetData.new('tweet07', '2012-03-01T22:30:10.000+00:00'),
+    TweetData.new('tweet08', '2012-03-01T22:30:10.000+00:00'),
+    TweetData.new('tweet09', '2012-03-01T22:30:10.000+00:00'),
     TweetData.new('tweet10', '2012-03-15T13:59:10.000+00:00')
   ]
 }
 
 downstream_states = {
   :state1 => [
-    TweetData.new('tweet1', '2012-03-01T14:30:10.000+00:00'),
-    TweetData.new('tweet2', '2012-03-01T14:30:10.000+00:00'),
-    TweetData.new('tweet3', '2012-03-01T14:30:10.000+00:00')
+    TweetData.new('tweet01', '2012-03-01T14:30:10.000+00:00'),
+    TweetData.new('tweet02', '2012-03-01T14:30:10.000+00:00'),
+    TweetData.new('tweet03', '2012-03-01T14:30:10.000+00:00')
   ],
   :state2 => [
-    TweetData.new('tweet1', '2012-03-01T14:30:10.000+00:00'),
-    TweetData.new('tweet2', '2012-03-01T14:30:10.000+00:00'),
-    TweetData.new('tweet3', '2012-03-01T14:30:10.000+00:00')
+    TweetData.new('tweet01', '2012-03-01T14:30:10.000+00:00'),
+    TweetData.new('tweet02', '2012-03-01T14:30:10.000+00:00'),
+    TweetData.new('tweet03', '2012-03-01T14:30:10.000+00:00')
   ],
   :state3 => [
-    TweetData.new('tweet1', '2012-03-01T14:30:10.000+00:00'),
-    TweetData.new('tweet2', '2012-03-11T14:30:10.000+00:00'),
-    TweetData.new('tweet3', '2012-03-13T14:30:10.000+00:00')
+    TweetData.new('tweet01', '2012-03-01T14:30:10.000+00:00'),
+    TweetData.new('tweet02', '2012-03-11T14:30:10.000+00:00'),
+    TweetData.new('tweet03', '2012-03-13T14:30:10.000+00:00')
   ],
   :state4 => [
-    TweetData.new('tweet1', '2011-11-01T14:30:10.000+00:00'),
-    TweetData.new('tweet2', '2012-01-01T22:30:10.000+00:00'),
-    TweetData.new('tweet3', '2012-01-01T22:30:10.000+00:00'),
-    TweetData.new('tweet4', '2012-01-01T22:30:10.000+00:00'),
-    TweetData.new('tweet5', '2012-02-01T22:30:10.000+00:00'),
-    TweetData.new('tweet6', '2012-02-01T22:30:10.000+00:00'),
-    TweetData.new('tweet7', '2012-03-01T22:30:10.000+00:00'),
-    TweetData.new('tweet8', '2012-03-01T19:30:10.000+01:00')
+    TweetData.new('tweet01', '2011-11-01T14:30:10.000+00:00'),
+    TweetData.new('tweet02', '2012-01-01T22:30:10.000+00:00'),
+    TweetData.new('tweet03', '2012-01-01T22:30:10.000+00:00'),
+    TweetData.new('tweet04', '2012-01-01T22:30:10.000+00:00'),
+    TweetData.new('tweet05', '2012-02-01T22:30:10.000+00:00'),
+    TweetData.new('tweet06', '2012-02-01T22:30:10.000+00:00'),
+    TweetData.new('tweet07', '2012-03-01T22:30:10.000+00:00'),
+    TweetData.new('tweet08', '2012-03-01T19:30:10.000+01:00')
   ],
   :state5 => [
-    TweetData.new('tweet1', '2011-11-01T14:30:10.000+00:00'),
-    TweetData.new('tweet2', '2012-01-01T22:30:10.000+00:00'),
-    TweetData.new('tweet3', '2012-01-01T22:30:10.000+00:00'),
-    TweetData.new('tweet4', '2012-01-01T22:30:10.000+00:00'),
-    TweetData.new('tweet5', '2012-02-01T22:30:10.000+00:00'),
-    TweetData.new('tweet6', '2012-02-01T22:30:10.000+00:00'),
-    TweetData.new('tweet7', '2012-03-01T22:30:10.000+00:00'),
-    TweetData.new('tweet8', '2012-03-01T22:30:10.000+00:00'),
-    TweetData.new('tweet9', '2012-03-01T22:30:10.000+00:00'),
+    TweetData.new('tweet01', '2011-11-01T14:30:10.000+00:00'),
+    TweetData.new('tweet02', '2012-01-01T22:30:10.000+00:00'),
+    TweetData.new('tweet03', '2012-01-01T22:30:10.000+00:00'),
+    TweetData.new('tweet04', '2012-01-01T22:30:10.000+00:00'),
+    TweetData.new('tweet05', '2012-02-01T22:30:10.000+00:00'),
+    TweetData.new('tweet06', '2012-02-01T22:30:10.000+00:00'),
+    TweetData.new('tweet07', '2012-03-01T22:30:10.000+00:00'),
+    TweetData.new('tweet08', '2012-03-01T22:30:10.000+00:00'),
+    TweetData.new('tweet09', '2012-03-01T22:30:10.000+00:00'),
     TweetData.new('tweet10', '2012-03-15T13:59:10.000+00:00')
   ]
 }
