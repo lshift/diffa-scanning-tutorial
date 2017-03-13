@@ -124,6 +124,10 @@ $categorized_downstream_states = {
   :state5 => downstream_states[:state5].map {|d| d.diffaize(CategorizingTweetDiffaizer.instance)}
 }
 
+get '/transition' do
+  { :state => ApplicationState.instance.get }
+end
+
 post '/transition' do
   ApplicationState.instance.set params[:state]
 end
@@ -162,11 +166,11 @@ end
 def filter_data(data, date_start, date_end)
   data.select do |datum|
     tweeted_at = datum[:attributes][:tweeted_at]
-    tweet_time = Time.parse(tweeted_at) unless tweeted_at.nil?
+    tweet_time = Date.parse(tweeted_at) unless tweeted_at.nil?
 
     tweet_time.nil? || (
-      (date_start.nil? || tweet_time >= Time.parse(date_start)) &&
-      (date_end.nil? || tweet_time <= Time.parse(date_end))
+      (date_start.nil? || tweet_time >= Date.parse(date_start)) &&
+      (date_end.nil? || tweet_time <= Date.parse(date_end))
     )
   end
 end
